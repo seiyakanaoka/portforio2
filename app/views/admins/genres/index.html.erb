@@ -1,0 +1,13 @@
+<div class="genre">
+  <% @genres.each do |genre| %>
+    <%= genre.name %>
+  <% end %>
+</div>
+
+<div class="new-genre">
+  <%= form_with model: @genre, url: admins_genres_path, local: true do |f| %>
+    <%= f.label :商品ジャンル登録 %>
+    <%= f.text_field :name %>
+    <%= f.submit '登録する' %>
+  <% end %>
+</div>

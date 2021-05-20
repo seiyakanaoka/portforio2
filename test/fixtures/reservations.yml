@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  admin_id: 1
+  date: 1
+  item_id: 1
+  time: 1
+  people: 1
+
+two:
+  customer_id: 1
+  admin_id: 1
+  date: 1
+  item_id: 1
+  time: 1
+  people: 1
