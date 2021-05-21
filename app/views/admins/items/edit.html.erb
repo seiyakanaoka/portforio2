@@ -1,0 +1,40 @@
+<div class="edit-item">
+  <%= form_with model: @item, url: admins_item_path, local: true do |f| %>
+    <div class="form">
+      <%= f.label :商品名 %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="form">
+      <%= f.label :説明 %>
+      <%= f.text_field :introduction %>
+    </div>
+
+    <div class="form">
+      <%= f.label :商品画像 %>
+      <%= f.file_field :image %>
+    </div>
+
+    <div class="form">
+      <%= f.label :価格（税込） %>
+      <%= f.text_field :price, placeholder: "1000" %>
+    </div>
+
+    <div class="form">
+      <%= f.label :商品ジャンル %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択して下さい" %>
+    </div>
+
+    <div class="form">
+      <p>販売ステータス</p>
+
+      <%= f.radio_button :is_active, true %>
+      <%= f.label :is_active, '販売中', value: true %>
+
+      <%= f.radio_button :is_active, false %>
+      <%= f.label :is_active, '販売停止中', value: false %>
+    </div>
+
+    <%= f.submit '商品編集' %>
+  <% end %>
+</div>

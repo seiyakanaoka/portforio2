@@ -1,0 +1,16 @@
+<div class="show-item">
+  <% if @item.image? %>
+    <%= image_tag @item.item_image.url %>
+  <% end %>
+  <%= @item.name %>
+  <%= @item.introduction %>
+  <%= @item.price %>
+  <%= @item.genre.name %>
+  <% if @item.is_active == true %>
+    <p>販売中</p>
+  <% else %>
+    <p>販売停止中</p>
+  <% end %>
+</div>
+
+<%= link_to '編集する', edit_admins_item_pat(@item) %>

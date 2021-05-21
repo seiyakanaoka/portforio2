@@ -1,0 +1,14 @@
+<div class="items">
+  <% @items.each do |item| %>
+    <div class="item-content">
+      <%= link_to admins_item_path(item) do %><%= item.name %><% end %>
+      <%= item.genre.genre.name %>
+      <%= item.price %>
+      <%= item.is_active %>
+    </div>
+  <% end %>
+</div>
+
+<div class="new-item">
+  <%= link_to '商品の新規登録', new_admins_item_path %>
+</div>

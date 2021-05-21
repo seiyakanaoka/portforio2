@@ -1,6 +1,6 @@
-<div class="genre">
+<div class="genres">
   <% @genres.each do |genre| %>
-    <%= genre.name %>
+    <div><%= genre.name %><%= link_to '編集する', edit_admins_genre_path(genre) %></div>
   <% end %>
 </div>
 

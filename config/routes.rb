@@ -12,12 +12,13 @@ Rails.application.routes.draw do
 
   scope module: :customers do
     root 'homes#top'
-    get '/about' => 'homes#about'
   end
 
   namespace :admins do
-    resources :genres, only: [:index, :new, :create, :edit, :update]
-    resources :items, only: [:index, :new, :create]
+    root 'homes#top'
+    get '/about' => 'homes#about'
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
