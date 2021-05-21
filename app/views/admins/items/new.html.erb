@@ -13,7 +13,7 @@
 
     <div class="form">
       <%= f.label :商品画像 %>
-      <%= f.file_field :image %>
+      <%= f.attachment_field :item_image %>
     </div>
 
     <div class="form">
@@ -23,7 +23,7 @@
 
     <div class="form">
       <%= f.label :商品ジャンル %>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択して下さい" %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択してください" %>
     </div>
 
     <div class="form">

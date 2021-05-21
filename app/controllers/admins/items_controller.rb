@@ -1,6 +1,7 @@
 class Admins::ItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
   before_action :set_item, only: [:show, :edit, :update]
+  layout 'admins'
 
   def new
     @item = Item.new
@@ -9,17 +10,14 @@ class Admins::ItemsController < ApplicationController
   def create
     binding.pry
     @item = Item.new(item_params)
+    @item.admin_id = current_admin.id
     if @item.save
       redirect_to admins_items_path
     else
       render :new
     end
   end
-
-  def index
-    @items = Item.all
-  end
-
+  
   def show
   end
 
@@ -28,7 +26,7 @@ class Admins::ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to adimns_item_path(@item)
+      redirect_to admins_item_path(@item)
     else
       render :edit
     end
@@ -41,14 +39,6 @@ class Admins::ItemsController < ApplicationController
   end
 
   def item_params
-    list = [
-      :genre_id,
-      :name,
-      :item_image,
-      :introduction,
-      :price,
-      :is_active,
-    ]
-    params.require(:item).permit(list)
+    params.require(:item).permit(:genre_id, :name, :item_image, :introduction, :price, :is_active)
   end
 end

@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_124344) do
 
   create_table "articles", force: :cascade do |t|
     t.integer "admin_id"
-    t.string "image"
+    t.string "article_image_id"
     t.string "title"
     t.text "body"
     t.datetime "created_at", null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_124344) do
     t.integer "admin_id"
     t.integer "genre_id"
     t.string "name", null: false
-    t.string "item_image"
+    t.string "item_image_id"
     t.text "introduction", null: false
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false

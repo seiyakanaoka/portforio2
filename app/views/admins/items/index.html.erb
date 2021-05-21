@@ -2,9 +2,13 @@
   <% @items.each do |item| %>
     <div class="item-content">
       <%= link_to admins_item_path(item) do %><%= item.name %><% end %>
-      <%= item.genre.genre.name %>
+      <%= item.genre.name %>
       <%= item.price %>
-      <%= item.is_active %>
+      <% if item.is_active == true %>
+        <p class="true-item-status">販売中</p>
+      <% else %>
+        <p class="false-item-status">販売停止中</p>
+      <% end %>
     </div>
   <% end %>
 </div>
