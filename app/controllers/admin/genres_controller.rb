@@ -1,14 +1,20 @@
-class Admins::GenresController < ApplicationController
+class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
-  layout 'admins'
-  
+  layout 'admin'
+
+  def new
+    @genre = Genre.new
+  end
+
   def show
+    @genre = Genre.find(params[:id])
   end
 
   def create
     @genre = Genre.new(genre_params)
+    @genre.admin_id = current_admin.id
     if @genre.save
-      redirect_to admins_genres_path
+      redirect_to admin_genre_path(@genre)
     else
       render :new
     end
@@ -21,7 +27,7 @@ class Admins::GenresController < ApplicationController
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      redirect_to admins_genres_path
+      redirect_to admin_genres_path
     else
       render :edit
     end
@@ -30,6 +36,6 @@ class Admins::GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genre).permit(:name, :admin_id)
   end
 end

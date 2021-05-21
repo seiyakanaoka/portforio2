@@ -10,14 +10,16 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
-  scope module: :customers do
+  scope module: :public do
     root 'homes#top'
+    resources :admins, only: [:index, :show]
+    resources :items, only: [:index, :show]
   end
 
-  namespace :admins do
+  namespace :admin do
     root 'homes#top'
     get '/about' => 'homes#about'
-    resources :genres, only: [:show, :create, :edit, :update]
+    resources :genres, only: [:new, :show, :create, :edit, :update]
     resources :items, only: [:new, :create, :show, :edit, :update]
     resources :admins, only: [:show, :edit, :update] do
       member do

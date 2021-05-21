@@ -1,0 +1,31 @@
+<div class="my_page">
+  <h2><%= @admin.name %></h2>
+
+  <div class="new-form">
+    <%= link_to '新商品登録', new_admin_item_path %>
+    <%= link_to '新ジャンル登録', new_admin_genre_path %>
+  </div>
+
+  <div class="my_items">
+    <h3>商品一覧</h3>
+    <% @item.each do |item| %>
+      <%= attachment_image_tag item, :item_image, size: "100x100" %>
+      <%= link_to admin_item_path(item) do %><%= item.name %><% end %>
+      <%= item.genre.name %>
+        <%= item.price %><%= "円（税抜）" %>
+        <% if item.is_active == true %>
+          <p class="true-item-status">販売中</p>
+        <% else %>
+          <p class="false-item-status">販売停止中</p>
+        <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="my_genres">
+    <h3>ジャンル一覧</h3>
+    <% @genre.each do |genre| %>
+      <p><%= link_to admin_genre_path(genre) do %><%= genre.name %><% end %></p>
+    <% end %>
+  </div>
+</div>

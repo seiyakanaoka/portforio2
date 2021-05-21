@@ -1,0 +1,22 @@
+<div class="show-admin">
+  <div class="admin-info">
+    <%= @admin.name %>
+    <%= @admin.address %>
+  </div>
+
+  <div class="admin-content">
+    <table class="admin-items">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @item.each do |item| %>
+        <%= link_to item_path(item) do %><%= item.name %><% end %>
+        <%= item.introduction %>
+        <%= item.price %><%= "円（税抜）" %>
+      <% end %>
+    </table>
+  </div>
+</div>

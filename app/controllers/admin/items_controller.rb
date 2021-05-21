@@ -1,23 +1,22 @@
-class Admins::ItemsController < ApplicationController
+class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_item, only: [:show, :edit, :update]
-  layout 'admins'
+  layout 'admin'
 
   def new
     @item = Item.new
   end
 
   def create
-    binding.pry
     @item = Item.new(item_params)
     @item.admin_id = current_admin.id
     if @item.save
-      redirect_to admins_items_path
+      redirect_to admin_item_path(@item)
     else
       render :new
     end
   end
-  
+
   def show
   end
 
@@ -26,7 +25,7 @@ class Admins::ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to admins_item_path(@item)
+      redirect_to admin_item_path(@item)
     else
       render :edit
     end

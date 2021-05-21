@@ -1,5 +1,5 @@
 <div class="edit-genre">
-  <%= form_with model: @genre, url: admins_genre_path, local: true do |f| %>
+  <%= form_with model: @genre, url: admin_genre_path, local: true do |f| %>
     <%= f.text_field :name %>
     <%= f.submit '編集する' %>
   <% end %>

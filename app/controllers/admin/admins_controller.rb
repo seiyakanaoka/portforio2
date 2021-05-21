@@ -1,6 +1,6 @@
-class Admins::AdminsController < ApplicationController
+class Admin::AdminsController < ApplicationController
   before_action :authenticate_admin!
-  layout 'admins'
+  layout 'admin'
   before_action :set_admin, only: [:show, :my_page]
 
   def show
@@ -9,6 +9,7 @@ class Admins::AdminsController < ApplicationController
 
   def my_page
     @item = @admin.items
+    @genre = @admin.genres
   end
 
   private
