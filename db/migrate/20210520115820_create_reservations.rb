@@ -7,6 +7,7 @@ class CreateReservations < ActiveRecord::Migration[5.2]
       t.integer :item_id, null: false
       t.time :time, null: false
       t.integer :people, null: false
+      t.integer :seat
 
       t.timestamps
     end

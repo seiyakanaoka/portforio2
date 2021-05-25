@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_124344) do
     t.string "address", null: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "seat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_124344) do
     t.integer "item_id", null: false
     t.time "time", null: false
     t.integer "people", null: false
+    t.integer "seat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

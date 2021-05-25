@@ -7,4 +7,6 @@ class Admin < ApplicationRecord
   has_many :genres, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :reservations, dependent: :destroy
+
+  validates :seat, presence: true, on: :update
 end

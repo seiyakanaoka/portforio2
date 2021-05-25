@@ -37,6 +37,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
       t.string :address, null: false
       t.float :latitude
       t.float :longitude
+      t.integer :seat
 
       t.timestamps null: false
     end

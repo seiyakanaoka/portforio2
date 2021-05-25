@@ -12,7 +12,17 @@ class Admin::AdminsController < ApplicationController
     @genre = @admin.genres
   end
 
+  def update
+    @admin = Admin.find(params[:id])
+    @admin.update(admin_params)
+    redirect_back(fallback_location: root_path)
+  end
+
   private
+
+  def admin_params
+    params.require(:admin).permit(:seat)
+  end
 
   def set_admin
     @admin = Admin.find(params[:id])

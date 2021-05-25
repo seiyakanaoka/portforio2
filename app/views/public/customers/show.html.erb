@@ -1,13 +1,24 @@
 <div class="my-page">
   <h2>予約一覧</h2>
-  <div class="my-reservations">
-    <% @reservation.each do |r| %>
-      <%= r.admin.name %>
-      <%= r.item.name %>
-      <%= r.people %><%= "人" %>
-      <h4>予約日時</h4>
-      <%= r.date.strftime("%Y年 %m月 %d日") %>
-      <%= r.time.strftime('%H:%M') %>
-    <% end %>
-  </div>
+  <table class="my-reservations">
+    <thead>
+      <tr>
+        <th><h2>ショップ名</h2></th>
+        <th><h2>予約人数</h2></th>
+        <th><h2>予約メニュー</h2></th>
+        <th><h2>予約日時</h2></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @reservation.each do |r| %>
+        <tr>
+          <td><%= r.admin.name %></td>
+          <td><%= r.people %><%= "人" %></td>
+          <td><%= r.item.name %></td>
+          <td><%= r.date.strftime("%Y年 %m月 %d日") %><%= r.time.strftime('%H:%M') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
