@@ -1,0 +1,47 @@
+<table class="yoyakukibou">
+  <thead>
+    <tr>
+      <th><h2>予約希望者名</h2></th>
+      <th><h2>人数</h2></th>
+      <th><h2>メニュー</h2></th>
+      <th><h2>日時</h2></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sum = 0 %>
+    <% @reservations.each do |r| %>
+      <tr>
+        <td><%= r.customer.last_name + r.customer.first_name %>様</td>
+        <td><%= r.people %><%= "人" %></td>
+        <td><%= r.item.name %></td>
+        <td><%= r.date.strftime("%Y年 %m月 %d日") %><%= r.time.strftime('%H:%M') %></td>
+        <td>
+          <%= form_with model: r, url: admin_reservation_path(r.id), local: true do |f| %>
+          <div class="form">
+            <%= f.label :席数指定 %>
+            <%= f.select :seat, options_for_select((1..10).to_a), { prompt: '選択' } %>
+          </div>
+            <%= f.submit '席数を指定する' %>
+          <% end %>
+        </td>
+      </tr>
+      <% @sum += r.seat %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="limit">
+  <h2>最大席数</h2>
+    <%= @admin.seat %><%= '席' %>
+  <h2>残り席数</h2>
+  <%= @admin.seat - @sum %><%= '席' %>
+
+  <%= form_with model: @admin, url: admin_admin_path(@admin.id), local: true do |f| %>
+    <div class="form">
+      <%= f.label :席数設定 %><br />
+      <%= f.select :seat, options_for_select((1..200).to_a), { prompt: '選択' } %>
+    </div>
+    <%= f.submit '席数変更する' %>
+  <% end %>
+</div>

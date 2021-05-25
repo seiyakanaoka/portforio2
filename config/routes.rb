@@ -21,13 +21,14 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'homes#top'
     get '/about' => 'homes#about'
-    resources :genres, only: [:new, :show, :create, :edit, :update]
-    resources :items, only: [:new, :create, :show, :edit, :update]
     resources :admins, only: [:show, :edit, :update] do
       member do
         get :my_page
       end
     end
+    resources :genres, only: [:new, :show, :create, :edit, :update]
+    resources :items, only: [:new, :create, :show, :edit, :update]
+    resources :reservations, only: [:index, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
