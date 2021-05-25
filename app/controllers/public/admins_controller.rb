@@ -9,5 +9,7 @@ class Public::AdminsController < ApplicationController
   def show
     @admin = Admin.find(params[:id])
     @item = @admin.items
+    @reservation = Reservation.new
   end
+
 end
