@@ -79,10 +79,11 @@ ActiveRecord::Schema.define(version: 2021_05_20_124344) do
     t.integer "customer_id", null: false
     t.integer "admin_id", null: false
     t.date "date", null: false
-    t.integer "item_id", null: false
+    t.integer "item_id"
     t.time "time", null: false
     t.integer "people", null: false
     t.integer "seat"
+    t.boolean "is_active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

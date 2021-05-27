@@ -10,6 +10,7 @@ class Public::AdminsController < ApplicationController
     @admin = Admin.find(params[:id])
     @item = @admin.items
     @reservation = Reservation.new
+    @reservations = @admin.reservations
   end
 
 end
