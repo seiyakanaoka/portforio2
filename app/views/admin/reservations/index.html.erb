@@ -1,10 +1,13 @@
+<h1>仮予約欄</h1>
 <table class="yoyakukibou">
   <thead>
     <tr>
-      <th><h2>予約希望者名</h2></th>
+      <th><h2>仮予約者名</h2></th>
       <th><h2>人数</h2></th>
-      <th><h2>メニュー</h2></th>
+      <th><h2>予約内容</h2></th>
       <th><h2>日時</h2></th>
+      <th><h2>席数指定</h2></th>
+      <th><h2>予約状況欄</h2></th>
     </tr>
   </thead>
 
@@ -14,9 +17,16 @@
       <tr>
         <td><%= r.customer.last_name + r.customer.first_name %>様</td>
         <td><%= r.people %><%= "人" %></td>
-        <td><%= r.item.name %></td>
+        <td>
+          <% if r.item == nil %>
+            <%= '来店予約のみ' %>
+          <% else %>
+            <%= r.item.name %>
+          <% end %>
+        </td>
         <td><%= r.date.strftime("%Y年 %m月 %d日") %><%= r.time.strftime('%H:%M') %></td>
         <td>
+          <%= r.seat %><%= '席' %>
           <%= form_with model: r, url: admin_reservation_path(r.id), local: true do |f| %>
           <div class="form">
             <%= f.label :席数指定 %>
@@ -25,8 +35,17 @@
             <%= f.submit '席数を指定する' %>
           <% end %>
         </td>
+        <td>
+          <% if r.is_active == false %>
+            <%= '予約確定前' %>
+            <%= button_to '予約を確定する', withdraw_admin_reservation_path(r.id), method: :patch %>
+          <% else %>
+            <%= '予約確定済み' %>
+            <%= button_to '予約を一時取り消す', withdraw_admin_reservation_path(r.id), method: :patch %>
+          <% end %>
+        </td>
       </tr>
-      <% @sum += r.seat %>
+      <% @sum += (r.seat).to_i %>
     <% end %>
   </tbody>
 </table>
@@ -35,7 +54,7 @@
   <h2>最大席数</h2>
     <%= @admin.seat %><%= '席' %>
   <h2>残り席数</h2>
-  <%= @admin.seat - @sum %><%= '席' %>
+  <%= (@admin.seat).to_i - @sum %><%= '席' %>
 
   <%= form_with model: @admin, url: admin_admin_path(@admin.id), local: true do |f| %>
     <div class="form">

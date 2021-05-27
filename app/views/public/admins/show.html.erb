@@ -1,7 +1,15 @@
 <div class="show-admin">
   <div class="admin-info">
-    <%= @admin.name %>
-    <%= @admin.address %>
+    <h1><%= @admin.name %></h1>
+    <h3>住所</h3>
+    <p><%= @admin.address %></p>
+    <p>最大席数：<%= @admin.seat %>席</p>
+
+    <% @sum = 0 %>
+    <% @reservations.each do |r| %>
+      <% @sum += (r.seat).to_i %>
+    <% end %>
+    <p>残り席数：<%= @admin.seat - @sum %>席</p>
   </div>
 
   <div class="admin-content">
@@ -22,7 +30,7 @@
 
   <section class="section">
     <div class="section__block section__block--scoped">
-      <h3>pickadate.js 予約ページdemo</h3>
+      <h3>予約情報入力</h3>
         <div class="fieldset__wrapper">
           <%= form_with model: @reservation, url: reservations_path, local: true do |f| %>
             <div class="form">
@@ -34,7 +42,7 @@
             </div>
 
             <div class="form">
-              <%= f.collection_select :item_id, @item, :id, :name, { prompt: "メニューを選択してください" } %>
+              <%= f.collection_select :item_id, @item, :id, :name, { prompt: "来店希望のみ" } %>
             </div>
 
             <div class="form">
@@ -54,3 +62,4 @@
   </section>
 
 </div>
+
