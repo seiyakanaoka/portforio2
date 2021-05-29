@@ -1,0 +1,26 @@
+<section class="edit-article">
+  <%= attachment_image_tag @article, :article_image, size: "100x100" %>
+  <h4><%= @article.title %></h4>
+  <p><%= @article.body %></p>
+</section>
+
+<div>
+  <%= form_with model: @article, url: admin_article_path(@article), local: true do |f| %>
+    <div class="form">
+      <%= f.label :画像 %><br />
+      <%= f.attachment_field :article_image %>
+    </div>
+
+    <div class="form">
+      <%= f.label :タイトル %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="form">
+      <%= f.label :内容 %><br />
+      <%= f.text_area :body %>
+    </div>
+
+    <%= f.submit '編集する' %>
+  <% end %>
+</div>

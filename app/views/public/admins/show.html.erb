@@ -28,6 +28,16 @@
     </table>
   </div>
 
+  <div class="admin-articles">
+    <% @articles.each do |a| %>
+      <section>
+        <%= attachment_image_tag a, :article_image, size: "100x100" %>
+        <h3><%= a.title %></h3>
+        <p><%= a.body %></p>
+      </section>
+    <% end %>
+  </div>
+
   <section class="section">
     <div class="section__block section__block--scoped">
       <h3>予約情報入力</h3>
@@ -53,7 +63,7 @@
               <%= f.hidden_field :admin_id, value: @admin.id %>
             </div>
 
-            <%= f.submit '予約する' %>
+            <%= f.submit '予約する', data: { confirm: "予約を確定させますか？" } %>
           <% end %>
         </div>
         <div id="result"></div>      <!-- ボタン押下の結果を表示する -->

@@ -1,0 +1,36 @@
+<div class="articles">
+  <div class="new-article">
+    <%= form_with model: @article, url: admin_articles_path, local: true do |f| %>
+      <div class="form">
+        <%= f.label :画像 %><br />
+        <%= f.attachment_field :article_image %>
+      </div>
+
+      <div class="form">
+        <%= f.label :タイトル %><br />
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="form">
+        <%= f.label :内容 %><br />
+        <%= f.text_area :body %>
+      </div>
+
+      <%= f.submit '投稿する' %>
+    <% end %>
+  </div>
+
+  <% @articles.each do |a| %>
+    <section class="article">
+      <%= attachment_image_tag a, :article_image, size: "100x100" %>
+      <h4><%= a.title %></h4>
+      <p><%= a.body %></p>
+      <div class="edit-article">
+        <%= link_to '記事の編集', edit_admin_article_path(a) %>
+      </div>
+      <div class="edit-article">
+        <%= link_to '記事の削除', admin_article_path(a), method: :delete %>
+      </div>
+    </section>
+  <% end %>
+</div>
