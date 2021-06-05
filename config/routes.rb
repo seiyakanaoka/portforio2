@@ -15,7 +15,12 @@ Rails.application.routes.draw do
     resources :admins, only: [:index, :show]
     resources :customers, only: [:show, :edit]
     resources :items, only: [:index, :show]
-    resources :reservations, only: [:show, :create]
+    resources :reservations, only: [:show, :create] do
+      member do
+        post :confirm
+        post :back
+      end
+    end
   end
 
   namespace :admin do

@@ -9,6 +9,7 @@ class CreateReservations < ActiveRecord::Migration[5.2]
       t.integer :people, null: false
       t.integer :seat
       t.boolean "is_active", default: false, null: false
+      t.text :request
 
       t.timestamps
     end
