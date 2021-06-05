@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_124344) do
     t.integer "people", null: false
     t.integer "seat"
     t.boolean "is_active", default: false, null: false
+    t.text "request"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

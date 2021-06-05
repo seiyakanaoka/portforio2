@@ -42,7 +42,7 @@
     <div class="section__block section__block--scoped">
       <h3>予約情報入力</h3>
         <div class="fieldset__wrapper">
-          <%= form_with model: @reservation, url: reservations_path, local: true do |f| %>
+          <%= form_with model: @reservation, url: confirm_reservation_path, method: :post, local: true do |f| %>
             <div class="form">
               <%= f.text_field :date, id: "date", class: "fieldset__input js__datepicker", placeholder: "Try me..." %>
             </div>
@@ -60,10 +60,14 @@
             </div>
 
             <div class="form">
+              <%= f.text_area :request %>
+            </div>
+
+            <div class="form">
               <%= f.hidden_field :admin_id, value: @admin.id %>
             </div>
 
-            <%= f.submit '予約する', data: { confirm: "予約を確定させますか？" } %>
+            <%= f.submit '予約確認画面へ' %>
           <% end %>
         </div>
         <div id="result"></div>      <!-- ボタン押下の結果を表示する -->

@@ -13,12 +13,18 @@ class Public::ReservationsController < ApplicationController
     @reservation = current_customer.reservations
   end
 
+  def back
+		@reservation = Reservation.new(reservation_params)
+		redirect_to admin_path(@reservation.admin_id)
+  end
+
   def confirm
+    @reservation = Reservation.new(reservation_params)
   end
 
   private
 
   def reservation_params
-    params.require(:reservation).permit(:admin_id, :people, :time, :date, :item_id)
+    params.require(:reservation).permit(:admin_id, :people, :time, :date, :request, :item_id)
   end
 end
