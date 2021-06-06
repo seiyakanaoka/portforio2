@@ -1,0 +1,29 @@
+<div class="yoyakuhenkou">
+  <%= form_with model: @reservation, local: true do |f| %>
+    <div class="form">
+      <%= f.text_field :date, id: "date", class: "fieldset__input js__datepicker", placeholder: "Try me..." %>
+    </div>
+
+    <div class="form">
+      <%= f.text_field :time, id: "time", class: "fieldset__input js__datepicker", placeholder: "Try me..." %>
+    </div>
+
+    <div class="form">
+      <%= f.collection_select :item_id, @item, :id, :name, { prompt: "来店希望のみ" } %>
+    </div>
+
+    <div class="form">
+      <%= f.select :people, options_for_select((0..10).to_a), { prompt: '人数を選択してください' } %>人
+    </div>
+
+    <div class="form">
+      <%= f.text_area :request %>
+    </div>
+
+    <div class="form">
+      <%= f.hidden_field :admin_id, value: @admin.id %>
+    </div>
+
+    <%= f.submit '予約確認画面へ' %>
+  <% end %>
+</div>

@@ -13,6 +13,12 @@ class Admin::ReservationsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
   def withdraw
     @reservation = Reservation.find(params[:id])
     if @reservation.is_active == false

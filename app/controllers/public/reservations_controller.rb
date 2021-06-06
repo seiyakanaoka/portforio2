@@ -6,11 +6,29 @@ class Public::ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.customer_id = current_customer.id
     @reservation.save
-    redirect_to admins_path
+    redirect_to reservations_clear_path
+  end
+
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   def show
     @reservation = current_customer.reservations
+  end
+
+  def edit
+    @reservation = Reservation.find(params[:id])
+    @admin = @reservation.admin
+    @item = @admin.items
+  end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(reservation_params)
+    redirect_to customer_path(current_customer)
   end
 
   def back
@@ -20,6 +38,9 @@ class Public::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(reservation_params)
+  end
+
+  def clear
   end
 
   private
