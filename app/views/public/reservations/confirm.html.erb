@@ -18,7 +18,7 @@
 </div>
 
 <div class="sousin">
-  <%= form_with model: @reservation, url: reservations_path, local: true do |f| %>
+  <%= form_with model: @reservation, url: reservations_path, method: :post, local: true do |f| %>
     <%= f.hidden_field :date %>
     <%= f.hidden_field :time %>
     <%= f.hidden_field :item_id %>

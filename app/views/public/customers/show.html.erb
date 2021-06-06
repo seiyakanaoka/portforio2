@@ -7,6 +7,7 @@
         <th><h2>予約人数</h2></th>
         <th><h2>予約メニュー</h2></th>
         <th><h2>予約日時</h2></th>
+        <th><h2>質問内容</h2></th>
         <th><h2>予約状況</h2></th>
       </tr>
     </thead>
@@ -24,6 +25,7 @@
             <% end %>
           </td>
           <td><%= r.date.strftime("%Y年 %m月 %d日") %><%= r.time.strftime('%H:%M') %></td>
+          <td><%= r.request %></td>
           <td>
             <% if r.is_active == false %>
               <%= '予約未確定' %>
@@ -31,6 +33,8 @@
               <%= '予約確定済み' %>
             <% end %>
           </td>
+          <td><%= link_to '予約を削除する', reservation_path(r), method: :delete, data: { confirm: '本当に予約を削除してもよろしいですか？' } %></td>
+          <td><%= link_to '予約内容を変更する', edit_reservation_path(r) %></td>
         </tr>
       <% end %>
     </tbody>

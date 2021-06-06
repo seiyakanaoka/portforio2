@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     resources :admins, only: [:index, :show]
     resources :customers, only: [:show, :edit]
     resources :items, only: [:index, :show]
-    resources :reservations, only: [:show, :create] do
+    get 'reservations/clear'
+    resources :reservations, only: [:show, :create, :destroy, :edit, :update] do
       member do
         post :confirm
         post :back
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
     end
     resources :genres, only: [:new, :show, :create, :edit, :update]
     resources :items, only: [:new, :create, :show, :edit, :update]
-    resources :reservations, only: [:index, :update] do
+    resources :reservations, only: [:index, :update, :destroy] do
       member do
         patch :withdraw
       end

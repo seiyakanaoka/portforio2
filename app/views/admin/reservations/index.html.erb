@@ -44,6 +44,7 @@
             <%= button_to '予約を一時取り消す', withdraw_admin_reservation_path(r.id), method: :patch %>
           <% end %>
         </td>
+        <td><%= link_to '予約を削除する', admin_reservation_path(r), method: :delete, data: { confirm: '本当に予約を削除してもよろしいですか？' } %></td>
       </tr>
       <% @sum += (r.seat).to_i %>
     <% end %>
