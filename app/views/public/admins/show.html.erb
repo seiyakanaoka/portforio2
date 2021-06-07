@@ -52,11 +52,16 @@
             </div>
 
             <div class="form">
-              <%= f.collection_select :item_id, @item, :id, :name, { prompt: "来店希望のみ" } %>
+              <%= f.collection_select :item_id, @item, :id, :name, { prompt: "選択してください" } %>
             </div>
 
             <div class="form">
               <%= f.select :people, options_for_select((0..10).to_a), { prompt: '人数を選択してください' } %>人
+            </div>
+            
+            <div class="form">
+              <%= f.label :席数指定 %>
+              <%= f.select :seat, options_for_select((1..10).to_a), { prompt: '選択' } %>
             </div>
 
             <div class="form">

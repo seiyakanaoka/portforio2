@@ -5,13 +5,7 @@
 
   <p><%= @reservation.date.strftime("%Y年 %m月 %d日") %></p>
   <p><%= @reservation.time.strftime('%H:%M') %></p>
-  <p>
-    <% if @reservation.item == nil %>
-      <%= '来店予約のみ' %>
-    <% else %>
-      <%= @reservation.item.name %>
-    <% end %>
-  </p>
+  <p><%= @reservation.item.name %></p>
   <p><%= @reservation.people %>人</p>
   <p><%= @reservation.request %></p>
   <p><%= @reservation.admin.name %></p>

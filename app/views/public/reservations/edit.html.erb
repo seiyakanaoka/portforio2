@@ -1,5 +1,5 @@
 <div class="yoyakuhenkou">
-  <%= form_with model: @reservation, local: true do |f| %>
+  <%= form_with model: @reservation, method: :patch, local: true do |f| %>
     <div class="form">
       <%= f.text_field :date, id: "date", class: "fieldset__input js__datepicker", placeholder: "Try me..." %>
     </div>
@@ -9,7 +9,7 @@
     </div>
 
     <div class="form">
-      <%= f.collection_select :item_id, @item, :id, :name, { prompt: "来店希望のみ" } %>
+      <%= f.collection_select :item_id, Item.all, :id, :name, { prompt: "選択して下さい" } %>
     </div>
 
     <div class="form">
@@ -17,11 +17,12 @@
     </div>
 
     <div class="form">
-      <%= f.text_area :request %>
+      <%= f.label :席数指定 %>
+      <%= f.select :seat, options_for_select((1..10).to_a), { prompt: '選択' } %>
     </div>
 
     <div class="form">
-      <%= f.hidden_field :admin_id, value: @admin.id %>
+      <%= f.text_area :request %>
     </div>
 
     <%= f.submit '予約確認画面へ' %>
