@@ -27,8 +27,11 @@ class Public::ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    @reservation.update(reservation_params)
-    redirect_to customer_path(current_customer)
+    if @reservation.update(reservation_params)
+      redirect_to customer_path(current_customer)
+    else
+      render :edit
+    end
   end
 
   def back
@@ -46,6 +49,6 @@ class Public::ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:admin_id, :people, :time, :date, :request, :item_id)
+    params.require(:reservation).permit(:admin_id, :people, :time, :date, :request, :item_id, :seat)
   end
 end

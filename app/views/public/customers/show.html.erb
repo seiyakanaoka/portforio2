@@ -33,7 +33,11 @@
               <%= '予約確定済み' %>
             <% end %>
           </td>
-          <td><%= link_to '予約を削除する', reservation_path(r), method: :delete, data: { confirm: '本当に予約を削除してもよろしいですか？' } %></td>
+          <td>
+            <% if r.is_active == false %>
+              <%= link_to '予約を削除する', reservation_path(r), method: :delete, data: { confirm: '本当に予約を削除してもよろしいですか？' } %>
+            <% end %>
+          </td>
           <td><%= link_to '予約内容を変更する', edit_reservation_path(r) %></td>
         </tr>
       <% end %>

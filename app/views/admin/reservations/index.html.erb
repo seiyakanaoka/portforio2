@@ -17,13 +17,7 @@
       <tr>
         <td><%= r.customer.last_name + r.customer.first_name %>様</td>
         <td><%= r.people %><%= "人" %></td>
-        <td>
-          <% if r.item == nil %>
-            <%= '来店予約のみ' %>
-          <% else %>
-            <%= r.item.name %>
-          <% end %>
-        </td>
+        <td><%= r.item.name %></td>
         <td><%= r.date.strftime("%Y年 %m月 %d日") %><%= r.time.strftime('%H:%M') %></td>
         <td>
           <%= r.seat %><%= '席' %>
